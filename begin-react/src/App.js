@@ -3,9 +3,10 @@ import HelloReact from './Hello';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <HelloReact />
-      <HelloReact />
+      <HelloReact /> 
+      {/* 에러발생 */}
     </div>
   );
 }
