@@ -6,8 +6,8 @@ import Wrapper from './Wrapper';
 function App() {
   return (
     <Wrapper>
-      <HelloReact name="react" color="red" />
-      <HelloReact color="pink" />
+      <HelloReact name="react" color="red" isSpecial={true} />
+      <HelloReact color="pink" isSpecial />
       <HelloReact />
     </Wrapper>
   );
