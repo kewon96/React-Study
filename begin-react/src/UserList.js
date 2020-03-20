@@ -8,25 +8,7 @@ function User({ user }) {
     );
 }
 
-function UserList() {
-    const users = [
-        {
-            id: 1,
-            username: 'alpha',
-            email: 'alpha@naver.com'
-        },
-        {
-            id: 2,
-            username: 'beta',
-            email: 'beta@naver.com'
-        },
-        {
-            id: 3,
-            username: 'gamma',
-            email: 'gamma@naver.com'
-        }
-    ];
-
+function UserList({ users }) {
     // 1. 배열을 하나하나 Rendering하는 방식
     // return (
     //     <div>
