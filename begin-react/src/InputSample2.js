@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function InputSample2() {
     // useState에서는 여러개의 문자를 가진 객체형태를 관리해야함 
@@ -6,6 +6,7 @@ function InputSample2() {
         name: '',
         nickname: '',
     });
+    const nameInput = useRef();
     const { name, nickname } = inputs;
 
     const onChange = (e) => {
@@ -37,6 +38,8 @@ function InputSample2() {
             name: '',
             nickname: '',
         });
+
+        nameInput.current.focus();
     };
 
     return (
@@ -46,6 +49,7 @@ function InputSample2() {
                 placeholder="Name" 
                 onChange={onChange}
                 value={name} 
+                ref={nameInput}
             />
             <input 
                 name="nickname" 
@@ -66,7 +70,7 @@ function InputSample2() {
 export default InputSample2;
 
 /**
- * 객체상테 업데이트
+ * 객체상태 업데이트
  * 기존의 상태 복사
  * 덮어씌우기
  * 새로운 상태에서 설정
@@ -76,5 +80,5 @@ export default InputSample2;
  * 렌더링감지
  * 
  * 배열상태 관리
- * 지켜야 나중에 컴포넌트 업데아ㅣ트 성능 최적화가 가능하다.
+ * 지켜야 나중에 컴포넌트 업데이트 성능 최적화가 가능하다.
  */
