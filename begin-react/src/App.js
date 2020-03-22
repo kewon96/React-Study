@@ -24,17 +24,20 @@ function App() {
     {
       id: 1,
       username: 'alpha',
-      email: 'alpha@naver.com'
+      email: 'alpha@naver.com', 
+      active: true,
     },
     {
       id: 2,
       username: 'beta',
-      email: 'beta@naver.com'
+      email: 'beta@naver.com',
+      active: false,
     },
     {
       id: 3,
       username: 'gamma',
-      email: 'gamma@naver.com'
+      email: 'gamma@naver.com',
+      active: false,
     } 
   ]);
 
@@ -83,6 +86,14 @@ function App() {
     
   };
 
+  // 요소를 수정할 때는 삭제할 때와 동일하게 불변성을 지키면서 진행해야함 -> map함수 사용
+  const onToggle = id => {
+    setUsers(users.map(
+      user => user.id === id
+        ? { ...user, active: !user.active } : user
+    ));
+  };
+
   return (
     <>
       <CreateUser 
@@ -93,7 +104,8 @@ function App() {
       />
       <UserList 
         users={users} 
-        onRemove={onRemove}
+        onRemove={onRemove} 
+        onToggle={onToggle} 
       />
     </>
   );

@@ -1,18 +1,27 @@
 import React from 'react';
 
-function User({ user, onRemove }) {
-    const { id, username, email } = user;
+function User({ user, onRemove, onToggle }) {
+    const { id, username, email, active } = user;
 
     return (
         <div>
-            <b>{username}</b> <span>({email})</span> 
+            <b 
+                style={{
+                    color: active ? 'green' : 'black',
+                    cursor: 'pointer'
+                }}
+                onClick={() => onToggle(id)}
+            >
+                {username}
+            </b> 
+            <span>({email})</span> 
             {/* 삭제이벤트 작동 시 해당 함수의 id값을 Parameter값을 넣어서 호출 */}
             <button onClick={() => onRemove(id)}>Delete</button>
         </div>
     );
 }
 
-function UserList({ users, onRemove }) {
+function UserList({ users, onRemove, onToggle }) {
     // 1. 배열을 하나하나 Rendering하는 방식
     // return (
     //     <div>
@@ -52,6 +61,7 @@ function UserList({ users, onRemove }) {
                             user={user} 
                             key={user.id} 
                             onRemove={onRemove} 
+                            onToggle={onToggle}
                         />)
                     // 없을 땐 map의 두 번째 Parameter인 index를 사용한다.
                     // 웬만해선 key에 index넣는 것을 피해야한다.
