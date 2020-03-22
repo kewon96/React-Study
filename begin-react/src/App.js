@@ -56,23 +56,32 @@ function App() {
       ...inputs
     };
   
-  // 1. spread를 사용해 진행
-  // 여러개의 배열을 하나로 합칠 때 사용
-  setUsers([...users, user]);
+    // 1. spread를 사용해 진행
+    // 여러개의 배열을 하나로 합칠 때 사용
+    setUsers([...users, user]);
 
-  // 2. concat을 사용해 진행
-  // 기존의 배열을 복사해서 해당 위치에 넣은 다음, 새로운 배열을 만든 뒤 추가
-  // Parameter에 배열이 아니어도 됨
-  setUsers(users.concat(user));
-  
-  // input 내용물 제거
-  setInputs({
-    username: '',
-    email: ''
-  });
-  
-  nextId.current += 1;
+    // 2. concat을 사용해 진행
+    // 기존의 배열을 복사해서 해당 위치에 넣은 다음, 새로운 배열을 만든 뒤 추가
+    // Parameter에 배열이 아니어도 됨
+    setUsers(users.concat(user));
+    
+    // input 내용물 제거
+    setInputs({
+      username: '',
+      email: ''
+    });
+
+    nextId.current += 1;
   }
+
+  // 요소를 삭제할 땐 불변성을 지키면서 진행해야함 -> filter함수 사용
+  // 배열에서 특정 조건이 만족하는 원소들만 추출, 새로운 배열을 만들어줌
+  const onRemove = id => {
+
+    // 각 user 객체들을 확인하는데 Parameter와 다른 아이디만 보여지게 함
+    setUsers(users.filter(user => user.id !== id));
+    
+  };
 
   return (
     <>
@@ -82,7 +91,10 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}  
       />
-      <UserList users={users} />
+      <UserList 
+        users={users} 
+        onRemove={onRemove}
+      />
     </>
   );
 }
