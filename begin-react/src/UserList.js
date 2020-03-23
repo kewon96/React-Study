@@ -19,15 +19,15 @@ function User({ user, onRemove, onToggle }) {
     //     }
     // }, []); // 의존되는 값을 배열 안에 넣음, 값이 비어있으면 컴포넌트가 화면에 처음 나타날 때만 실행
 
-    // useEffect(() => {
-    //     console.log('user값이 설정됨!')
-    //     console.log(user);
+    useEffect(() => {
+        console.log('user값이 설정됨!')
+        console.log(user);
 
-    //     return () => {
-    //         console.log('user값이 바뀌기 전!');
-    //         console.log(user)
-    //     }
-    // }, [user]); // 바뀔 때도 나타남
+        return () => {
+            console.log('user값이 바뀌기 전!');
+            console.log(user)
+        }
+    }, [user]); // 바뀔 때도 나타남
     // // 배열 값을 넣어야 최신의 값을 얻을 수 있다.
 
     // 해당 userEffect는 어떤 활동을 하건 모든 컴포넌트에서 실행된다.
@@ -37,9 +37,9 @@ function User({ user, onRemove, onToggle }) {
     // 브라우저상에는 원하는 항목만 이벤트가 작동하는 것을 볼 수 있지만
     // DOM상에서는 모든 내용을 랜더링, 비교 후 바뀐 부분만 적용
     // 지금은 느려지거나 하진 않지만 추후 데이터가 많아진다면 Virtual DOM에서의 리소스조차 아껴야하는 상황이 발생할 수 있다. => 컴포넌트 리랜더링 최적화
-    useEffect(() => {
-        console.log(user);
-    });
+    // useEffect(() => {
+    //     console.log(user);
+    // });
 
 
     return (

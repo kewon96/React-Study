@@ -1,7 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser'
 
+function countActiveUsers(users) {
+  console.log('활성 사용자 수를 세는 중...');
+
+  // users배열에서 active가 true인 것만 filtering을 해서 얻은 배열의 길이를 리턴
+  return users.filter(user => user.active).length;
+}
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -94,6 +100,9 @@ function App() {
     ));
   };
 
+  // users가 바뀔 때만 호출하고 아니라면 이전의 값을 재사용함
+  const count = useMemo(() => countActiveUsers(users), [users]);
+
   return (
     <>
       <CreateUser 
@@ -107,6 +116,7 @@ function App() {
         onRemove={onRemove} 
         onToggle={onToggle} 
       />
+      <div>활성 사용자 수 : {count}</div>
     </>
   );
 }
