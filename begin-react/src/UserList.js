@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user, onRemove, onToggle }) {
     const { id, username, email, active } = user;
     // // mount / numount 
     // useEffect(() => {
@@ -58,7 +58,7 @@ function User({ user, onRemove, onToggle }) {
             <button onClick={() => onRemove(id)}>Delete</button>
         </div>
     );
-}
+});
 
 function UserList({ users, onRemove, onToggle }) {
     // 1. 배열을 하나하나 Rendering하는 방식
@@ -111,4 +111,4 @@ function UserList({ users, onRemove, onToggle }) {
     );
 }
 
-export default UserList;
+export default React.memo(UserList, (prevProps, nextProps) => nextProps.users === prevProps.users);
